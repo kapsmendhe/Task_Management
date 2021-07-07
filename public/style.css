@@ -1,0 +1,98 @@
+.task_line {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin-left: 100px;
+  background-color: rgb(230, 230, 230);
+  width: 352px;
+  border-radius: 4px;
+}
+
+.task {
+  font-weight: bolder;
+
+  padding: 5px;
+}
+
+.add {
+  margin-left: 250px;
+  border: 1px solid black;
+  background: none;
+  cursor: pointer;
+  width: 50px;
+}
+
+.task_bar {
+  background-color: rgb(202, 235, 248);
+  margin-left: 100px;
+  border: 1px solid black;
+  height: 300px;
+  width: 350px;
+  display: block;
+}
+
+.task_des {
+  padding: 10px 10px;
+}
+
+.task_des input {
+  width: 300px;
+  height: 25px;
+}
+
+.date_time {
+  display: flex;
+  padding: 20px 10px;
+}
+
+.time {
+  margin-left: 20px;
+}
+
+.time input {
+  width: 140px;
+}
+
+.user {
+  padding: 20px 10px;
+}
+
+.user input {
+  width: 300px;
+  height: 25px;
+}
+
+.btn_bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-delete button {
+  padding: 10px 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.cancel_save {
+  padding: 10px 30px;
+  margin-left: 110px;
+}
+
+.saved_task {
+  display: flex;
+  background-color: cornflowerblue;
+  margin-left: 100px;
+  border: 1px solid black;
+  height: 100px;
+  width: 350px;
+}
+
+.saved_task button {
+  position: fixed;
+  margin-left: 300px;
+  margin-top: 40px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
