@@ -2,22 +2,42 @@ import React, { useState } from 'react'
 
 function EditTask(props) {
 
-    const { state, setState, setDisabled, setTaskDisplayed } = props;
+    const [update, setUpdate] = useState({
+        task: props.task,
+        taskDate: props.taskDate,
+        taskTime: props.taskTime,
+        taskUser: props.taskUser,
+    })
+    // const { task, taskDate, taskTime, taskUser, setState, state } = props;
 
     const [displayed, setDisplayed] = useState(false);
 
+    const inputEvent = (e) => {
+        const { task1, taskDate1, taskTime1, taskUser1 } = e.target;
 
+        setUpdate((prev) => {
+            return {
+                ...prev,
+                [task1]: taskDate1,
+                [taskTime1]: taskUser1,
+            };
+        });
+    }
 
     const saveClick = () => {
 
+        // const newTaskDetails = [{ task: task1, taskDate: taskDate1, taskTime: taskTime1, taskUser: taskUser1 }];
+        // setState(val => {
+        //     return [...val, ...newTaskDetails]
+        // })
 
-        setDisabled((e) => {
-            return false;
-        });
+        // setDisabled((e) => {
+        //     return false;
+        // });
 
-        setTaskDisplayed((e) => {
-            return false;
-        });
+        // setTaskDisplayed((e) => {
+        //     return false;
+        // });
 
         setDisplayed(true);
 
@@ -26,24 +46,24 @@ function EditTask(props) {
         <div className="task_bar" style={{ display: displayed ? "none" : 'true' }}>
             <div className="task_des">
                 <label>Task Description</label><br />
-                <input id="des_inp" placeholder="enter" value={state.task} name="Task Description" />
+                <input id="des_inp" onChange={inputEvent} placeholder="enter" value={update.task} name="Task Description" />
             </div>
 
             <div className="date_time">
                 <div>
                     <label>Date</label><br />
-                    <input type="date" name="Date" value={state.taskDate} />
+                    <input type="date" onChange={inputEvent} name="Date" value={update.taskDate} />
                 </div>
 
                 <div className="time">
                     <label>Time</label><br />
-                    <input type="time" name="Time" value={state.taskTime} />
+                    <input type="time" onChange={inputEvent} name="Time" value={update.taskTime} />
                 </div>
 
             </div>
             <div className="user">
                 <label>Assign User</label><br />
-                <input name="Assign User" value={state.taskUser} />
+                <input name="Assign User" onChange={inputEvent} value={update.taskUser} />
             </div>
 
             <div className="btn_bar">

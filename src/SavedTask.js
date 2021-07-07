@@ -1,12 +1,22 @@
 import React, { useState } from 'react'
-import EditTask from './EditTask';
+
 function SavedTask(props) {
-    const { state } = props;
+    const { state, setState } = props;
     const [taskBar, setTaskBar] = useState([]);
     const editHandler = () => {
-        setTaskBar(taskBar.concat(
-            <EditTask state={state} />
-        ))
+
+        props.editItem(props.id);
+        // setTaskBar(taskBar.concat(
+        //     <EditTask
+        //         task={state[props.id].task}
+        //         taskDate={state[props.id].taskDate}
+        //         taskTime={state[props.id].taskTime}
+        //         taskUser={state[props.id].taskUser}
+        //         setState={setState}
+        //         state={state}
+        //     />
+        // )
+        // )
     }
 
     return (
@@ -16,7 +26,7 @@ function SavedTask(props) {
                 <p>{props.taskDate}</p>
             </div>
             <button onClick={editHandler}><i className="fas fa-edit"></i></button>
-            <div>{taskBar}</div>
+            {/* <div>{taskBar}</div> */}
         </div>
     )
 }

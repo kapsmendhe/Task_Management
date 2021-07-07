@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import TaskBar from './TaskBar';
 import SavedTask from "./SavedTask";
+import EditTask from './EditTask';
 
 function AddTask(props) {
     const { state, setState } = props;
     const [inputList, setInputList] = useState([]);
     const [isDisabled, setDisabled] = useState(false);
+    const [edit, setEdit] = useState(false);
     const [taskDisplayed, setTaskDisplayed] = useState(true)
+
+    const [editvalue, setEditvalue] = useState({
+        tasktitle: "",
+        editDate: "",
+        editTime: "",
+        editUser: "",
+    });
 
     const addHandler = (e) => {
         // console.log("Hello")
@@ -15,6 +24,18 @@ function AddTask(props) {
         ));
         setDisabled(true);
     }
+
+
+    const editItem = (id) => {
+        setEdit(true);
+        setEditvalue({
+            tasktitle: state[id].task,
+            editDate: state[id].taskDate,
+            editTime: state[id].taskTime,
+            editUser: state[id].taskUser,
+        })
+    }
+
     return (
         <div>
             <div className='task_line'>
@@ -29,14 +50,23 @@ function AddTask(props) {
                 return (
                     <SavedTask
                         key={index}
+                        id={index}
                         task={ele.task}
                         taskDate={ele.taskDate}
                         taskDisplayed={taskDisplayed}
                         state={state}
                         setState={setState}
+                        editItem={editItem}
                     />
                 );
             })}
+            {edit ? (<EditTask
+                task={editvalue.tasktitle}
+                taskDate={editvalue.editDate}
+                taskTime={editvalue.editTime}
+                taskUser={editvalue.editUser}
+            // passNoteEdit={EditNote}
+            />) : null}
         </div>
     )
 }
