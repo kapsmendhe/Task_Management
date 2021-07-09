@@ -3,38 +3,23 @@ import TaskBar from './TaskBar';
 import SavedTask from "./SavedTask";
 import EditTask from './EditTask';
 
+
+
+
 function AddTask(props) {
     const { state, setState } = props;
-    const [inputList, setInputList] = useState([]);
-    const [isDisabled, setDisabled] = useState(false);
-    const [edit, setEdit] = useState(false);
-    const [taskDisplayed, setTaskDisplayed] = useState(true)
 
-    const [editvalue, setEditvalue] = useState({
-        tasktitle: "",
-        editDate: "",
-        editTime: "",
-        editUser: "",
-    });
+    const [isDisabled, setDisabled] = useState(false);
+    const [control, setControl] = useState(false)
+    const [editControl, setEditControl] = useState(false)
+    const [index, setIndex] = useState()
+
 
     const addHandler = (e) => {
-        // console.log("Hello")
-        setInputList(inputList.concat(
-            <TaskBar setState={setState} setDisabled={setDisabled} setTaskDisplayed={setTaskDisplayed} />
-        ));
+        setControl(true);
         setDisabled(true);
     }
 
-
-    const editItem = (id) => {
-        setEdit(true);
-        setEditvalue({
-            tasktitle: state[id].task,
-            editDate: state[id].taskDate,
-            editTime: state[id].taskTime,
-            editUser: state[id].taskUser,
-        })
-    }
 
     return (
         <div>
@@ -44,29 +29,28 @@ function AddTask(props) {
                     <i className="fas fa-plus"></i>
                 </button>
             </div>
-            <div>{inputList}</div>
 
-            {state.map((ele, index) => {
-                return (
+            {!control ? (
+                !editControl ? (
                     <SavedTask
-                        key={index}
-                        id={index}
-                        task={ele.task}
-                        taskDate={ele.taskDate}
-                        taskDisplayed={taskDisplayed}
+                        setIndex={setIndex}
                         state={state}
-                        setState={setState}
-                        editItem={editItem}
+                        setEditControl={setEditControl}
                     />
-                );
-            })}
-            {edit ? (<EditTask
-                task={editvalue.tasktitle}
-                taskDate={editvalue.editDate}
-                taskTime={editvalue.editTime}
-                taskUser={editvalue.editUser}
-            // passNoteEdit={EditNote}
-            />) : null}
+                ) : (
+                    <EditTask
+                        setEditControl={setEditControl}
+                        state={state}
+                        index={index}
+                    />
+                )
+            ) : (
+                <TaskBar
+                    setDisabled={setDisabled}
+                    setState={setState}
+                    setControl={setControl}
+                />
+            )}
         </div>
     )
 }

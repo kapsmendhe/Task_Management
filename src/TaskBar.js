@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 
 function TaskBar(props) {
 
-    const { state, setState, setDisabled, setTaskDisplayed } = props;
+    const { setState, setDisabled, setControl } = props;
 
     const [task, setTask] = useState("");
     const [taskDate, setTaskDate] = useState("");
     const [taskTime, setTaskTime] = useState("");
     const [taskUser, setTaskUser] = useState("");
-    const [displayed, setDisplayed] = useState(false);
+    // const [displayed, setDisplayed] = useState(false);
 
     const taskHandler = (e) => {
         setTask(e.target.value);
@@ -29,20 +29,20 @@ function TaskBar(props) {
             return [...val, ...newTaskDetails]
         })
 
-        setDisabled((e) => {
-            return false;
-        });
+        setDisabled(false);
 
-        setTaskDisplayed((e) => {
-            return false;
-        });
-
-        setDisplayed(true);
+        setControl(false)
+        // setDisplayed(true);
 
     }
 
+    const cancelClick = () => {
+        setControl(false);
+        setDisabled(false);
+    }
+
     return (
-        <div className="task_bar" style={{ display: displayed ? "none" : 'true' }}>
+        <div className="task_bar">
             <div className="task_des">
                 <label>Task Description</label><br />
                 <input id="des_inp" placeholder="enter" onChange={taskHandler} value={task} name="Task Description" />
@@ -71,7 +71,7 @@ function TaskBar(props) {
                     <button><i className="fas fa-trash-alt"></i></button>
                 </div>
                 <div className="cancel_save">
-                    <button style={{ border: "none", marginRight: "10px", cursor: "pointer" }}>Cancel</button>
+                    <button style={{ border: "none", marginRight: "10px", cursor: "pointer" }} onClick={cancelClick}>Cancel</button>
                     <button style={{ backgroundColor: "lightgreen", border: "none", cursor: "pointer" }} onClick={saveClick}>Save</button>
                 </div>
 

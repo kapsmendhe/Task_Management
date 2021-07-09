@@ -2,68 +2,53 @@ import React, { useState } from 'react'
 
 function EditTask(props) {
 
-    const [update, setUpdate] = useState({
-        task: props.task,
-        taskDate: props.taskDate,
-        taskTime: props.taskTime,
-        taskUser: props.taskUser,
-    })
-    // const { task, taskDate, taskTime, taskUser, setState, state } = props;
+    const { index, state, setEditControl } = props;
+    const [editState, setEditState] = useState(state);
 
-    const [displayed, setDisplayed] = useState(false);
+    const [newData, setNewData] = useState({
+        task: editState[index].task,
+        taskDate: editState[index].taskDate,
+        taskTime: editState[index].taskTime,
+        taskUser: editState[index].taskUser,
+    })
 
     const inputEvent = (e) => {
-        const { task1, taskDate1, taskTime1, taskUser1 } = e.target;
-
-        setUpdate((prev) => {
-            return {
-                ...prev,
-                [task1]: taskDate1,
-                [taskTime1]: taskUser1,
-            };
-        });
-    }
-
-    const saveClick = () => {
-
-        // const newTaskDetails = [{ task: task1, taskDate: taskDate1, taskTime: taskTime1, taskUser: taskUser1 }];
-        // setState(val => {
-        //     return [...val, ...newTaskDetails]
-        // })
-
-        // setDisabled((e) => {
-        //     return false;
-        // });
-
-        // setTaskDisplayed((e) => {
-        //     return false;
-        // });
-
-        setDisplayed(true);
+        setNewData({ ...newData, [e.target.name]: [e.target.value] })
 
     }
+
+    const saveClick = (e) => {
+        e.preventDefault();
+        setEditState((state[index] = newData));
+        setEditControl(false)
+    }
+
+    const cancelClick = () => {
+        setEditControl(false)
+    }
+
     return (
-        <div className="task_bar" style={{ display: displayed ? "none" : 'true' }}>
+        <div className="task_bar">
             <div className="task_des">
                 <label>Task Description</label><br />
-                <input id="des_inp" onChange={inputEvent} placeholder="enter" value={update.task} name="Task Description" />
+                <input id="des_inp" onChange={inputEvent} placeholder="enter" value={newData.task} name="task" />
             </div>
 
             <div className="date_time">
                 <div>
                     <label>Date</label><br />
-                    <input type="date" onChange={inputEvent} name="Date" value={update.taskDate} />
+                    <input type="date" onChange={inputEvent} name="taskDate" value={newData.taskDate} />
                 </div>
 
                 <div className="time">
                     <label>Time</label><br />
-                    <input type="time" onChange={inputEvent} name="Time" value={update.taskTime} />
+                    <input type="time" onChange={inputEvent} name="taskTime" value={newData.taskTime} />
                 </div>
 
             </div>
             <div className="user">
                 <label>Assign User</label><br />
-                <input name="Assign User" onChange={inputEvent} value={update.taskUser} />
+                <input type="text" name="taskUser" onChange={inputEvent} value={newData.taskUser} />
             </div>
 
             <div className="btn_bar">
@@ -72,7 +57,7 @@ function EditTask(props) {
                     <button><i className="fas fa-trash-alt"></i></button>
                 </div>
                 <div className="cancel_save">
-                    <button style={{ border: "none", marginRight: "10px", cursor: "pointer" }}>Cancel</button>
+                    <button style={{ border: "none", marginRight: "10px", cursor: "pointer" }} onClick={cancelClick}>Cancel</button>
                     <button style={{ backgroundColor: "lightgreen", border: "none", cursor: "pointer" }} onClick={saveClick}>Save</button>
                 </div>
 

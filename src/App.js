@@ -3,7 +3,7 @@ import AddTask from "./AddTask";
 
 
 function App() {
-  const [state, setState] = useState([{ task: "", taskDate: "", taskTime: "", taskUser: "" }]);
+  const [state, setState] = useState([]);
   return (
     <div>
       <AddTask setState={setState} state={state} />
