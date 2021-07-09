@@ -24,7 +24,7 @@ function AddTask(props) {
     return (
         <div>
             <div className='task_line'>
-                <p className="task">Task <span>0</span></p>
+                <p className="task">Task {state.length}</p>
                 <button onClick={addHandler} disabled={isDisabled} className="add" id="add">
                     <i className="fas fa-plus"></i>
                 </button>

@@ -67,10 +67,10 @@ function TaskBar(props) {
 
             <div className="btn_bar">
                 <div className="btn-delete">
-
-                    <button><i className="fas fa-trash-alt"></i></button>
+                    <p></p>
+                    {/* <button><i className="fas fa-trash-alt"></i></button> */}
                 </div>
-                <div className="cancel_save">
+                <div className="cancel_save1">
                     <button style={{ border: "none", marginRight: "10px", cursor: "pointer" }} onClick={cancelClick}>Cancel</button>
                     <button style={{ backgroundColor: "lightgreen", border: "none", cursor: "pointer" }} onClick={saveClick}>Save</button>
                 </div>

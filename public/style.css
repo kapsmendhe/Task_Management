@@ -3,15 +3,16 @@
   flex-direction: row;
   text-align: center;
   margin-left: 100px;
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(224, 241, 243);
   width: 352px;
+  height: 50px;
   border-radius: 4px;
 }
 
 .task {
   font-weight: bolder;
-
-  padding: 5px;
+  padding: 5px 15px;
+  margin: 5px;
 }
 
 .add {
@@ -77,6 +78,11 @@
 .cancel_save {
   padding: 10px 30px;
   margin-left: 110px;
+}
+
+.cancel_save1 {
+  padding: 10px 30px;
+  margin-left: 180px;
 }
 
 .saved_task {

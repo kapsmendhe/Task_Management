@@ -27,6 +27,10 @@ function EditTask(props) {
         setEditControl(false)
     }
 
+    const deleteClick = () => {
+        state.splice(props.index, 1);
+        setEditControl(false)
+    }
     return (
         <div className="task_bar">
             <div className="task_des">
@@ -54,7 +58,7 @@ function EditTask(props) {
             <div className="btn_bar">
                 <div className="btn-delete">
 
-                    <button><i className="fas fa-trash-alt"></i></button>
+                    <button onClick={deleteClick}><i className="fas fa-trash-alt"></i></button>
                 </div>
                 <div className="cancel_save">
                     <button style={{ border: "none", marginRight: "10px", cursor: "pointer" }} onClick={cancelClick}>Cancel</button>
