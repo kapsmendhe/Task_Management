@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: row;
   text-align: center;
-  margin-left: 100px;
+  margin-left: 200px;
   background-color: rgb(224, 241, 243);
   width: 352px;
   height: 50px;
   border-radius: 4px;
+  margin-top: 40px;
 }
 
 .task {
@@ -25,8 +26,9 @@
 
 .task_bar {
   background-color: rgb(202, 235, 248);
-  margin-left: 100px;
+  margin-left: 200px;
   border: 1px solid black;
+  border-radius: 4px;
   height: 300px;
   width: 350px;
   display: block;
@@ -87,9 +89,10 @@
 
 .saved_task {
   display: flex;
-  background-color: cornflowerblue;
-  margin-left: 100px;
+  background-color: rgb(202, 235, 248);
+  margin-left: 200px;
   border: 1px solid black;
+  border-radius: 4px;
   height: 100px;
   width: 350px;
 }
